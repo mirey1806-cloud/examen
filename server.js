@@ -4,9 +4,16 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 
 const app = express();
+const session = require("express-session");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(session({
+  secret: "secreto123",
+  resave: false,
+  saveUninitialized: true
+}));
 
 app.use(express.static("public"));
 
