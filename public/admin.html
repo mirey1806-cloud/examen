@@ -6,43 +6,67 @@
 <body>
   <h2>Panel Administrador</h2>
 
-  <h3>Bitácora del sistema</h3>
-
+  <!-- ✅ ACCESO CORRECTO -->
+  <h3>✔ Accesos Correctos</h3>
   <table border="1">
     <thead>
       <tr>
         <th>Usuario</th>
-        <th>Tipo</th>
         <th>Fecha</th>
       </tr>
     </thead>
-    <tbody id="logsTable"></tbody>
+    <tbody id="successLogs"></tbody>
+  </table>
+
+  <!-- ❌ ACCESO FALLIDO -->
+  <h3>❌ Accesos Fallidos</h3>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Usuario</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody id="failLogs"></tbody>
+  </table>
+
+  <!-- 🔓 LOGOUT -->
+  <h3>🔓 Cierre de Sesión</h3>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Usuario</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody id="logoutLogs"></tbody>
   </table>
 
   <br>
   <a href="/logout">Cerrar sesión</a>
 
   <script>
-    async function cargarLogs() {
-      const res = await fetch("/logs");
+    async function cargarLogs(url, tableId) {
+      const res = await fetch(url);
       const logs = await res.json();
 
-      const table = document.getElementById("logsTable");
+      const table = document.getElementById(tableId);
       table.innerHTML = "";
 
       logs.forEach(log => {
-        const row = `
+        table.innerHTML += `
           <tr>
             <td>${log.username}</td>
-            <td>${log.type}</td>
             <td>${new Date(log.date).toLocaleString()}</td>
           </tr>
         `;
-        table.innerHTML += row;
       });
     }
 
-    cargarLogs();
+    // Cargar las 3 bitácoras
+    cargarLogs("/logs/success", "successLogs");
+    cargarLogs("/logs/fail", "failLogs");
+    cargarLogs("/logs/logout", "logoutLogs");
   </script>
 </body>
 </html>
