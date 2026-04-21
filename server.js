@@ -10,6 +10,17 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.set("trust proxy", 1);
+
+app.use(session({
+  secret: "secreto123",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    secure: false
+  }
+}));
+
 // 🔹 Sesiones (ANTES de rutas)
 app.use(session({
   secret: "secreto123",
