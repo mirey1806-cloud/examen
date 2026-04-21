@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro</title>
+</head>
+<body>
+  <h2>Registro</h2>
+
+  <form id="formRegister">
+    <input type="text" id="username" placeholder="Usuario" required><br><br>
+    <input type="password" id="password" placeholder="Contraseña" required><br><br>
+
+    <select id="role">
+      <option value="user">Usuario</option>
+      <option value="admin">Administrador</option>
+    </select><br><br>
+
+    <button type="submit">Registrar</button>
+  </form>
+
+  <script>
+    document.getElementById("formRegister").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const data = {
+        username: document.getElementById("username").value,
+        password: document.getElementById("password").value,
+        role: document.getElementById("role").value
+      };
+
+      const res = await fetch("http://localhost:3000/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      const text = await res.text();
+      alert(text);
+    });
+  </script>
+</body>
+</html>
