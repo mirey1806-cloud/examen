@@ -3,8 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
+  <style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  width: 300px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: #667eea;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #5a67d8;
+}
+</style>
+</head>
+
+<body>
+
 </head>
 <body>
+    <div class="container">
   <h2>Iniciar Sesión</h2>
 
   <form id="formLogin">
@@ -13,6 +64,7 @@
 
     <button type="submit">Entrar</button>
   </form>
+  </div>
 
   <script>
     document.getElementById("formLogin").addEventListener("submit", async (e) => {
