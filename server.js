@@ -2,35 +2,41 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const path = require("path");
 
 const app = express();
-const session = require("express-session");
 
+// 🔹 Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// 🔹 Sesiones (ANTES de rutas)
 app.use(session({
   secret: "secreto123",
   resave: false,
   saveUninitialized: true
 }));
 
+// 🔹 Archivos estáticos
 app.use(express.static("public"));
 
+// 🔹 Rutas
 const authRoutes = require("./routes/auth");
 app.use("/", authRoutes);
 
-const path = require("path");
-
+// 🔹 Ruta principal
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "login.html"));
 });
 
-// Conexión BD
+// 🔹 Conexión a MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("Conectado a MongoDB"))
   .catch(err => console.log(err));
 
-app.listen(3000, () => {
-  console.log("Servidor corriendo en puerto 3000");
+// 🔹 Puerto (IMPORTANTE para Render)
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log("Servidor corriendo en puerto " + PORT);
 });
