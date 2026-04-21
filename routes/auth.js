@@ -4,6 +4,16 @@ const User = require("../models/User");
 const Log = require("../models/Log");
 const bcrypt = require("bcrypt");
 
+// OBTENER BITÁCORAS
+router.get("/logs", async (req, res) => {
+  try {
+    const logs = await Log.find().sort({ date: -1 });
+    res.json(logs);
+  } catch (error) {
+    res.status(500).send("Error al obtener logs");
+  }
+});
+
 // REGISTRO
 router.post("/register", async (req, res) => {
   try {

@@ -4,10 +4,45 @@
   <title>Admin</title>
 </head>
 <body>
-  <h2>Bienvenido Administrador</h2>
+  <h2>Panel Administrador</h2>
 
-  <p>Esta es la pantalla de administrador</p>
+  <h3>Bitácora del sistema</h3>
 
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Usuario</th>
+        <th>Tipo</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody id="logsTable"></tbody>
+  </table>
+
+  <br>
   <a href="/logout">Cerrar sesión</a>
+
+  <script>
+    async function cargarLogs() {
+      const res = await fetch("/logs");
+      const logs = await res.json();
+
+      const table = document.getElementById("logsTable");
+      table.innerHTML = "";
+
+      logs.forEach(log => {
+        const row = `
+          <tr>
+            <td>${log.username}</td>
+            <td>${log.type}</td>
+            <td>${new Date(log.date).toLocaleString()}</td>
+          </tr>
+        `;
+        table.innerHTML += row;
+      });
+    }
+
+    cargarLogs();
+  </script>
 </body>
 </html>
