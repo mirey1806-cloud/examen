@@ -2,8 +2,58 @@
 <html>
 <head>
   <title>Admin</title>
+  <style>
+body {
+  font-family: Arial;
+  background: #f4f6f9;
+  padding: 30px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th {
+  background: #667eea;
+  color: white;
+  padding: 10px;
+}
+
+td {
+  padding: 10px;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background: #f2f2f2;
+}
+
+.logout {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+}
+</style>
 </head>
+
 <body>
+
+<div class="container">
+
   <h2>Panel Administrador</h2>
 
   <!-- ✅ ACCESO CORRECTO -->
@@ -44,6 +94,7 @@
 
   <br>
   <a href="/logout">Cerrar sesión</a>
+  </div>
 
   <script>
     async function cargarLogs(url, tableId) {
