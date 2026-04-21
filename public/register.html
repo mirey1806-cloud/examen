@@ -3,8 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <title>Registro</title>
+  <style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  width: 320px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: #667eea;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #5a67d8;
+}
+
+.link {
+  margin-top: 15px;
+  display: block;
+  font-size: 14px;
+}
+</style>
+
 </head>
+
 <body>
+
+
+    <div class="container">
   <h2>Registro</h2>
 
   <form id="formRegister">
@@ -18,6 +75,9 @@
 
     <button type="submit">Registrar</button>
   </form>
+
+  <a class="link" href="login.html">¿Ya tienes cuenta? Inicia sesión</a>
+</div>
 
   <script>
     document.getElementById("formRegister").addEventListener("submit", async (e) => {
