@@ -8,11 +8,16 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: true
-}));
+app.use(express.static("public"));
+
+const authRoutes = require("./routes/auth");
+app.use("/", authRoutes);
+
+const path = require("path");
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "login.html"));
+});
 
 // Conexión BD
 mongoose.connect(process.env.MONGO_URI)

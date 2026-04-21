@@ -23,7 +23,7 @@
         password: document.getElementById("password").value
       };
 
-      const res = await fetch("http://localhost:3000/login", {
+      const res = await fetch("/login", {  // 👈 CORREGIDO
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
@@ -32,7 +32,7 @@
       const text = await res.text();
 
       if (text === "Login correcto") {
-        window.location.href = "user.html"; // luego lo mejoramos
+        window.location.href = "user.html";
       } else {
         alert(text);
       }
