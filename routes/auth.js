@@ -84,14 +84,17 @@ router.post("/login", async (req, res) => {
 // LOGOUT
 router.get("/logout", async (req, res) => {
   try {
+    const username = req.session.user?.username; // 👈 GUARDAR ANTES
+
     await new Log({
-      username: req.session.user?.username,
+      username: username || "sin usuario",
       type: "logout"
     }).save();
 
-    req.session.destroy();
+    req.session.destroy(() => {
+      res.send("Sesión cerrada");
+    });
 
-    res.send("Sesión cerrada");
   } catch (error) {
     console.error(error);
     res.status(500).send("Error al cerrar sesión");
