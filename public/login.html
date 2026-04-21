@@ -29,13 +29,17 @@
         body: JSON.stringify(data)
       });
 
-      const text = await res.text();
+      const dataRes = await res.json();
 
-      if (text === "Login correcto") {
-        window.location.href = "user.html";
-      } else {
-        alert(text);
-      }
+if (dataRes.message === "Login correcto") {
+  if (dataRes.role === "admin") {
+    window.location.href = "admin.html";
+  } else {
+    window.location.href = "user.html";
+  }
+} else {
+  alert(dataRes.message);
+}
     });
   </script>
 </body>

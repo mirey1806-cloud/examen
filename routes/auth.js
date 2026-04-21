@@ -52,7 +52,10 @@ router.post("/login", async (req, res) => {
 
     await new Log({ username, type: "success" }).save();
 
-    res.send("Login correcto");
+    res.json({
+  message: "Login correcto",
+  role: user.role
+});
 
   } catch (error) {
     console.error("ERROR LOGIN:", error); // 👈 AQUÍ VERÁS EL ERROR REAL
